@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require("mongoose");
+const cors = require('cors');
+
 require('dotenv').config();
 const routes = require('./routes/route'); //imports routes
 const dbUrl = process.env.DB_URL;
@@ -24,6 +26,9 @@ const port = 3000
 //to handle json request
 app.use(express.json());
 app.use('/api', routes);
+app.use(cors({
+  origin: '*'
+}));
 
 app.listen(port, () => {
     console.log('Server is up and running on port number ' + port);
