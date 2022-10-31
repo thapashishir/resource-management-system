@@ -21,15 +21,14 @@ db.once("open", function () {
 });
 
 const app = express()
-const port = 3000
 
 //to handle json request
 app.use(express.json());
-app.use('/api', routes);
 app.use(cors({
-  origin: '*'
+  origin: 'http://localhost:3000'
 }));
+app.use('/api', routes);
 
-app.listen(port, () => {
-    console.log('Server is up and running on port number ' + port);
+app.listen(process.env.PORT, () => {
+    console.log('Server is up and running on port number ' +process.env.PORT);
 });

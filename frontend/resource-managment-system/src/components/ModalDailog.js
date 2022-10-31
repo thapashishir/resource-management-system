@@ -18,7 +18,7 @@ function ModalDialog(props){
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <ModalForm/>
+                    {props.body}
                 </Modal.Body>
                 <Modal.Footer>
                 <Button onClick={() => props.close()}>Cancel</Button>

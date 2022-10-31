@@ -29,8 +29,9 @@ exports.list_resource = function(req,res){
 
 
 exports.get_resource_details = function(req,res){
-    Resource.findById(req.param.id, (err, result) => {
+    Resource.findById(req.params.id, (err, result) => {
         if (err) res.json({msg: err, status: 500});
+        console.log(result)
         res.json({msg: 'Data recevied successfully.', status: 200, data: result});
     });
 };
