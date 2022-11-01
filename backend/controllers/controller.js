@@ -37,7 +37,7 @@ exports.get_resource_details = function(req,res){
 };
 
 exports.update_resource = function (req, res) {
-    Resource.findByIdAndUpdate(req.body.id, {$set: req.body},function (err, resource) {
+    Resource.findByIdAndUpdate(req.body._id, {$set: req.body},function (err, resource) {
         if (err)  res.json({msg: err,status: 500});
         res.json({msg : '', status:''});
     });

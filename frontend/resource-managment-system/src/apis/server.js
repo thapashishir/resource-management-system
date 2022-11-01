@@ -4,10 +4,12 @@ import env from "react-dotenv";
 const BASE_URL = env.BASE_URL;
 
 export async function post(endPoint, payload) {
+    const headers = {'Content-Type': 'application/json'}
     try {
         const response = await axios.post(
-            endPoint,
-            payload
+            BASE_URL + endPoint,
+            payload,
+            headers 
         );
         console.log(response);
     } catch (error) {

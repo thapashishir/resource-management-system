@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Form, Button} from 'react-bootstrap';
-import { get } from '../apis/server';
+import { get, post } from '../apis/server';
 
 function ModalForm(props) {
   
@@ -34,17 +34,25 @@ function ModalForm(props) {
   
   const handleSubmit = (event) => {
     event.preventDefault();
+    const response = post('/api/resource/update' ,  state)
+    response.then((response)=>{
+      alert("completed")
+    }).catch((error)=>{
+      console.log(error);
+    })
   };
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setState({ ...state, [name]: value });
-    console.log("on change");
   };
+
+  console.log(state)
 
   return (
     <Form onSubmit={handleSubmit}>
+      { props.form_config.dataId ? <Form.Control type="hidden" defaultValue={state._id}  name='_id' onChange={handleChange} /> : '' }
       <Form.Group className="mb-3">
         <Form.Label>Title</Form.Label>
         <Form.Control type="text" defaultValue={state.title} placeholder="resource title" name="title" onChange={handleChange} />
